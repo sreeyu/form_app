@@ -4,11 +4,11 @@ function SimpleForm(){
 
     return(
         <form >
-            <div>
+            <div className="form-control">
                 <label htmlFor="name">Your Name</label>
                 <input type="text" id="name" />
             </div>
-            <div>
+            <div className="form-action">
                 <button>Submit</button>
             </div>
         </form>
