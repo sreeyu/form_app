@@ -10,6 +10,15 @@ function SimpleForm(){
         setEnteredName(event.target.value);
     }
 
+    const onLostFocus = (event) => {
+        setInputIsTouched(true)
+
+        if(enteredName.trim() === ''){
+            setNameIsValid(false);
+            return;
+        }
+    }
+
     const formSubmit = (event) => {
         event.preventDefault();
 
@@ -34,7 +43,7 @@ function SimpleForm(){
         <form onSubmit={formSubmit} >
             <div className={formClass}>
                 <label htmlFor="name">Your Name</label>
-                <input value={enteredName} type="text" id="name" onChange={getName} />
+                <input value={enteredName} type="text" id="name" onChange={getName} onBlur={onLostFocus} />
             </div>
             {inputIsInvalid && <p className="error-text">Please enter your name</p>}
             <div className="form-action">
