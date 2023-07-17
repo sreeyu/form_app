@@ -8,9 +8,13 @@ function SimpleForm(){
 
     const getName = (event) => {
         setEnteredName(event.target.value);
+
+        if(event.target.value != ''){
+            setNameIsValid(true);
+        }
     }
 
-    const onLostFocus = (event) => {
+    const onLostFocus = () => {
         setInputIsTouched(true)
 
         if(enteredName.trim() === ''){
