@@ -11,6 +11,10 @@ function SimpleForm(){
     const formSubmit = (event) => {
         event.preventDefault();
 
+        if(enteredName.trim() === ''){
+            return;
+        }
+
         console.log(enteredName);
         setEnteredName('')
     }
@@ -19,7 +23,7 @@ function SimpleForm(){
         <form onSubmit={formSubmit} >
             <div className="form-control">
                 <label htmlFor="name">Your Name</label>
-                <input type="text" id="name" onChange={getName} />
+                <input value={enteredName} type="text" id="name" onChange={getName} />
             </div>
             <div className="form-action">
                 <button>Submit</button>
