@@ -6,7 +6,12 @@ function SimpleForm(){
     const [inputIsTouched, setInputIsTouched] = useState(false);
 
     const nameIsValid = enteredName.trim() !== '';
-    const inputIsInvalid = inputIsTouched && !nameIsValid
+    const inputIsInvalid = inputIsTouched && !nameIsValid;
+    let formIsValid = false;
+
+    if(nameIsValid){
+        formIsValid = true;
+    }
 
     const getName = (event) => {
         setEnteredName(event.target.value);
@@ -38,7 +43,7 @@ function SimpleForm(){
             </div>
             {inputIsInvalid && <p className="error-text">Please enter your name</p>}
             <div className="form-action">
-                <button>Submit</button>
+                <button disabled={!formIsValid}>Submit</button>
             </div>
         </form>
     );
