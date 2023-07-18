@@ -10,14 +10,15 @@ function SimpleForm(){
 
     const nameIsValid = enteredName.trim() !== '';
     const inputIsInvalid = inputIsTouched && !nameIsValid;
-    let formIsValid = false;
-
-    if(nameIsValid){
-        formIsValid = true;
-    }
 
     const emailIsValid = enteredEmail.trim().includes('@');
     const emailIsInvalid = emailIsTouched && !emailIsValid;
+
+    let formIsValid = false;
+
+    if(nameIsValid && emailIsValid){
+        formIsValid = true;
+    }
 
     const getName = (event) => {
         setEnteredName(event.target.value);
