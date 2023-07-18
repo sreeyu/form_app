@@ -3,24 +3,17 @@ import React, { useState } from "react";
 function SimpleForm(){
 
     const [enteredName, setEnteredName] = useState('');
-    const [nameIsValid, setNameIsValid] = useState(false);
     const [inputIsTouched, setInputIsTouched] = useState(false);
+
+    const nameIsValid = enteredName.trim() !== '';
+    const inputIsInvalid = inputIsTouched && !nameIsValid
 
     const getName = (event) => {
         setEnteredName(event.target.value);
-
-        if(event.target.value != ''){
-            setNameIsValid(true);
-        }
     }
 
     const onLostFocus = () => {
         setInputIsTouched(true)
-
-        if(enteredName.trim() === ''){
-            setNameIsValid(false);
-            return;
-        }
     }
 
     const formSubmit = (event) => {
@@ -28,18 +21,12 @@ function SimpleForm(){
 
         setInputIsTouched(true);
 
-        if(enteredName.trim() === ''){
-            setNameIsValid(false);
-            return;
-        }
-
-        setNameIsValid(true);
-
         console.log(enteredName);
-        setEnteredName('')
+        setEnteredName('');
+        setInputIsTouched(false);
     }
 
-    const inputIsInvalid = inputIsTouched && !nameIsValid
+    
 
     const formClass = inputIsInvalid ? 'form-control invalid' : 'form-control';
 
