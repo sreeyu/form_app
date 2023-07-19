@@ -12,15 +12,18 @@ function SimpleForm(){
         reset: resetNameInput
     } = useInput(value => value.trim() !== '');
 
+    const {
+        value: enteredEmail,
+        isValid: emailIsValid,
+        hasError: emailIsInvalid,
+        getValue: getEmail,
+        onLostFocus: emailBlur,
+        reset: resetEmailInput
+    } = useInput(value => value.includes('@'))
+
     
 
-    const [enteredEmail, setEnteredEmail] = useState('');
-    const [emailIsTouched, setEmailIsTouched] = useState(false);
-
-    
-
-    const emailIsValid = enteredEmail.trim().includes('@');
-    const emailIsInvalid = emailIsTouched && !emailIsValid;
+   
 
     let formIsValid = false;
 
@@ -29,14 +32,6 @@ function SimpleForm(){
     }
 
     
-
-    const getEmail = (event) => {
-        setEnteredEmail(event.target.value);
-    }
-
-    const emailBlur = () => {
-        setEmailIsTouched(true);
-    }
 
     const formSubmit = (event) => {
         event.preventDefault();
@@ -50,13 +45,9 @@ function SimpleForm(){
 
         resetNameInput();
 
-        setEnteredEmail('');
-        setEmailIsTouched(false);
+        resetEmailInput();
     }
 
-    
-
-    
 
     const formClass = inputIsInvalid ? 'form-control invalid' : 'form-control';
     const emailClass = emailIsInvalid ? 'form-control invalid' : 'form-control';
