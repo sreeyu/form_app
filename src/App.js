@@ -1,11 +1,18 @@
-import React from "react";
+import React, { Fragment } from "react";
 import SimpleForm from "./components/SimpleForm";
+import BasicForm from "./components/BasicForm";
 
 function App() {
   return (
-    <div className="App">
-      <SimpleForm />
-    </div>
+    <Fragment>
+      <div className="App">
+        <SimpleForm />
+      </div>
+      <div className="App">
+        <BasicForm />
+      </div>
+    </Fragment>
+    
   );
 }
 
