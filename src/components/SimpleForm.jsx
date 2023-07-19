@@ -1,15 +1,23 @@
 import React, { useState } from "react";
+import useInput from "../hooks/use-input";
 
 function SimpleForm(){
 
-    const [enteredName, setEnteredName] = useState('');
-    const [inputIsTouched, setInputIsTouched] = useState(false);
+    const {
+        value: enteredName, 
+        isValid: nameIsValid, 
+        hasError: inputIsInvalid, 
+        getValue: getName, 
+        onLostFocus, 
+        reset: resetNameInput
+    } = useInput(value => value.trim() !== '');
+
+    
 
     const [enteredEmail, setEnteredEmail] = useState('');
     const [emailIsTouched, setEmailIsTouched] = useState(false);
 
-    const nameIsValid = enteredName.trim() !== '';
-    const inputIsInvalid = inputIsTouched && !nameIsValid;
+    
 
     const emailIsValid = enteredEmail.trim().includes('@');
     const emailIsInvalid = emailIsTouched && !emailIsValid;
@@ -20,13 +28,7 @@ function SimpleForm(){
         formIsValid = true;
     }
 
-    const getName = (event) => {
-        setEnteredName(event.target.value);
-    }
-
-    const onLostFocus = () => {
-        setInputIsTouched(true)
-    }
+    
 
     const getEmail = (event) => {
         setEnteredEmail(event.target.value);
@@ -39,13 +41,14 @@ function SimpleForm(){
     const formSubmit = (event) => {
         event.preventDefault();
 
-        setInputIsTouched(true);
+        if(!nameIsValid){
+            return;
+        }
 
         console.log(enteredName);
         console.log(enteredEmail);
 
-        setEnteredName('');
-        setInputIsTouched(false);
+        resetNameInput();
 
         setEnteredEmail('');
         setEmailIsTouched(false);
