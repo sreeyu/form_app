@@ -20,13 +20,16 @@ function useValidate(validateInput){
         setInputIsTouched(false);
     };
 
+    const inputClass = inputIsInvalid ? 'form-control invalid' : 'form-control';
+
     return {
         value: enteredInput,
         inputIsValid,
         inputIsInvalid,
         getInput,
         inputBlur,
-        reset
+        reset,
+        inputClass
     };
 };
 
