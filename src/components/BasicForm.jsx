@@ -3,11 +3,20 @@ import React, { useState } from "react";
 function BasicForm(){
 
   const [enteredFName, setEnteredFName] = useState('');
+  const [fNameIsTouched, setFNameIsTouched ] = useState(false);
+
   const [enteredLName, setEnteredLName] = useState('');
   const [enteredEmail, setEnteredEmail] = useState('');
 
+  const fNameIsValid = enteredFName.trim() !== '';
+  const fNameIsInvalid = fNameIsTouched && !fNameIsValid;
+
   const getFname = (event) => {
     setEnteredFName(event.target.value);
+  }
+
+  const fNameBlur = () => {
+    setFNameIsTouched(true);
   }
 
   const getLname = (event) => {
@@ -27,12 +36,16 @@ function BasicForm(){
     setEnteredEmail('');
   }
 
+  const fNameClass = fNameIsInvalid ? 'form-control invalid' : 'form-control';
+  const message = <p className="error-text">Enter valid input</p>
+
     return (
         <form onSubmit={formSubmission}>
           <div className='control-group'>
-            <div className='form-control'>
+            <div className={fNameClass}>
               <label htmlFor='fname'>First Name</label>
-              <input value={enteredFName} type='text' id='fname' onChange={getFname} />
+              <input value={enteredFName} type='text' id='fname' onChange={getFname} onBlur={fNameBlur} />
+              {fNameIsInvalid && message}
             </div>
             <div className='form-control'>
               <label htmlFor='lname'>Last Name</label>
