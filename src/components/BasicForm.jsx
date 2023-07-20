@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import useValidate from "../hooks/use-validate";
 
 function BasicForm(){
@@ -32,6 +32,12 @@ function BasicForm(){
     reset: emailReset,
     inputClass: emailClass
   } = useValidate(value => value.includes('@'));
+
+  let formIsValid = false;
+
+  if(fNameIsValid && lNameIsValid && emailIsValid){
+    formIsValid = true;
+  }
   
 
   const formSubmission = (event) => {
@@ -77,7 +83,7 @@ function BasicForm(){
             {emailIsInvalid && message}
           </div>
           <div className='form-actions'>
-            <button>Submit</button>
+            <button disabled={!formIsValid}>Submit</button>
           </div>
         </form>
       );
