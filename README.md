@@ -21,4 +21,7 @@ The useInput hook is used in the SimpleForm component. It takes a validation fun
 The useValidate hook is used in the BasicForm component. It also takes a validation function as an argument to validate each input field. The hook returns the current value of the input, its validity status, and methods to handle input changes and lost focus. Additionally, it provides a dynamic CSS class based on the input's validity, allowing for easy styling.
 
 ## Conclusion
-This project demonstrates the power of custom hooks in React to create reusable and modular validation logic for form inputs. It serves as a foundation for understanding form validation techniques and how to improve code organization in React applications. Feel free to explore the code and experiment with the forms to enhance your understanding of form validation and custom hooks in React. 
+This project demonstrates the power of custom hooks in React to create reusable and modular validation logic for form inputs. It serves as a foundation for understanding form validation techniques and how to improve code organization in React applications.  
+
+## License
+This project is licensed under the [MIT License](https://opensource.org/license/mit/).
